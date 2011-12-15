@@ -1,3 +1,3 @@
 # to launch:
 
-bundle exec foreman start -p 3000
+bundle exec foreman start
