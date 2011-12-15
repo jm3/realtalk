@@ -3,6 +3,7 @@ add some subtle animation
 support pausing the flow from the browser (should be easy)
 support changing the query term from the browser (could be tough)
 DRY up the query term
+clean up the DOM every so often
 put REDIS togo URL somewhere non-public
 
 DONE get tweets pulling down from twitter's streaming API
