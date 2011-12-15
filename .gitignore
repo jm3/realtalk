@@ -1,3 +1,4 @@
 .foreman
-.swo
-.swp
+*.swo
+*.swp
+*~
