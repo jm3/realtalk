@@ -10,14 +10,14 @@ module Stream
     end
 
     def self.env
-      @_env ||= ENV['RACK_ENV'] || 'development'
+      @_env ||= ENV["RACK_ENV"] || "development"
     end
 
     def self.routes
       # Check out https://github.com/joshbuddy/http_router for more information on HttpRouter
       @_routes ||= HttpRouter.new do
-        add('/').to(HomeAction)
-        add('/stream').to(StreamAction)
+        add("/").to(HomeAction)
+        add("/stream").to(StreamAction)
       end
     end
 
@@ -33,7 +33,7 @@ Bundler.require(:default, Stream::Application.env)
 
 class HomeAction < Cramp::Action
   def start
-    @@template = Erubis::Eruby.new(File.read('index.erb'))
+    @@template = Erubis::Eruby.new(File.read("index.erb"))
     render @@template.result(binding)
     finish
   end
@@ -46,7 +46,7 @@ class StreamAction < Cramp::Action
 
   def send_tweet
     data = Ohm.redis.spop( "tweet:happy" )
-    screen_name = data.split( /,/ )[0].gsub( /^\[|"/, '' )
+    screen_name = data.split( /,/ )[0].gsub( /^\[|"/, "" )
     render data
   end
 end
