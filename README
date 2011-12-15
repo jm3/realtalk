@@ -1,0 +1,3 @@
+# to start:
+
+bundle exec thin --timeout 0 -R config.ru start
