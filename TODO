@@ -1,5 +1,6 @@
 design a rad UI for it in photoshop
-support pausing from the browser (should be easy)
+add some subtle animation
+support pausing the flow from the browser (should be easy)
 support changing the query term from the browser (could be tough)
 put REDIS togo URL somewhere non-public
 
