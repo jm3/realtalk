@@ -13,6 +13,7 @@ class StreamAction < Cramp::Action
 
   def send_tweet
     data = Ohm.redis.spop( "tweet:happy" )
+    screen_name = data.split( /,/ )[0].gsub( /^\[|"/, '' )
     render data
   end
 end

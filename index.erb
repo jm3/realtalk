@@ -6,25 +6,20 @@
   </head> 
   <body>
 
-    <pre id='chat'></pre>
+    <div id="tweets"></div>
 
     <script>
-      // reading
-      var es = new EventSource('/stream');
-      es.onmessage = function(e) { $('#chat').prepend(e.data + "\n") };
-
-      // writing
-      $("form").live("submit", function(e) {
-        $.post('/', {msg: "jm3: " + $('#msg').val()});
-        $('#msg').val('');
-        $('#msg').focus();
-        e.preventDefault();
-      });
+      // updating on event receipt
+      var es = new EventSource("/stream");
+      es.onmessage = function(e) { 
+        var tweet = jQuery.parseJSON( e.data );
+        console.log( tweet[1] );
+        $("#tweets").prepend("<div>" 
+        + "<img class='icon' src='http://img.tweetimag.es/i/" + tweet[0]  +"_n' />"
+        + tweet[1]
+        + "</div>");
+      };
     </script>
-
-    <form>
-      <input id='msg' placeholder='type message here...' />
-    </form>
 
   </body>
 </html>
