@@ -1,5 +1,6 @@
-.foreman
-.gems
 *.swo
 *.swp
 *~
+.bundle
+.foreman
+.gems
