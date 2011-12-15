@@ -43,6 +43,7 @@ GEM
       simple_oauth (~> 0.1.4)
     url_mount (0.2.1)
       rack
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
@@ -59,3 +60,4 @@ DEPENDENCIES
   thin
   tilt
   tweetstream
+  yajl-ruby

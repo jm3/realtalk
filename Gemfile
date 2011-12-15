@@ -11,3 +11,4 @@ gem "thin" # Async webserver for running a cramp application
 gem "tilt" # Generic interface to multiple Ruby template engines - https://github.com/rtomayko/tilt
 gem "SystemTimer"
 gem "tweetstream" # duh
+gem "yajl-ruby" # for tweetstream
