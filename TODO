@@ -1,13 +1,1 @@
-design a rad UI for it in photoshop
-add some subtle animation
-support pausing the flow from the browser (should be easy)
-support changing the query term from the browser (could be tough)
-DRY up the query term
-clean up the DOM every so often
-put REDIS togo URL somewhere non-public
-
-DONE get tweets pulling down from twitter's streaming API
-DONE get tweets loading into redis
-DONE get tweets pushing back to the browser via SSE
-DONE get it running on heroku(!@# WOW that was easy)
-DONE name it
+TODO's moved to Github Issues
