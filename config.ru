@@ -10,6 +10,6 @@ if Stream::Application.env == 'development'
 end
 
 # Serve static assets
-use Rack::Static, :urls => ["/javascripts", "/stylesheets"], :root => Stream::Application.root(:public)
+use Rack::Static, :urls => ["/images", "/javascripts", "/stylesheets"], :root => Stream::Application.root(:public)
 
 run Stream::Application.routes
