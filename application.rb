@@ -1,6 +1,5 @@
-require "rubygems"
 require "bundler"
-require "haml"
+require "rubygems"
 
 module Stream
   class Application
@@ -20,6 +19,7 @@ module Stream
 
     # Initialize the application
     def self.initialize!
+      Ohm.connect
     end
 
   end

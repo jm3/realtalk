@@ -11,12 +11,13 @@
     <script>
       // reading
       var es = new EventSource('/stream');
-      es.onmessage = function(e) { $('#chat').append(e.data + "\n") };
+      es.onmessage = function(e) { $('#chat').prepend(e.data + "\n") };
 
       // writing
       $("form").live("submit", function(e) {
-        $.post('/', {msg: "sdf: " + $('#msg').val()});
-        $('#msg').val(''); $('#msg').focus();
+        $.post('/', {msg: "jm3: " + $('#msg').val()});
+        $('#msg').val('');
+        $('#msg').focus();
         e.preventDefault();
       });
     </script>
