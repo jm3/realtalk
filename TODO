@@ -1,4 +1,9 @@
-get it running on heroku
 design a rad UI for it in photoshop
 support pausing from the browser (should be easy)
 support changing the query term from the browser (could be tough)
+
+DONE get tweets pulling down from twitter's streaming API
+DONE get tweets loading into redis
+DONE get tweets pushing back to the browser via SSE
+DONE get it running on heroku(!@# WOW that was easy)
+DONE name it
