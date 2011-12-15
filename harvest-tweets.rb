@@ -19,8 +19,9 @@ end
 
 term = ARGV[0] || "happy"
 @tracker = TweetStream::Client.new.track( term ) do |status|
-  if rand(3) >= 2
-    Ohm.redis.sadd "tweet:#{term}", [status.user.screen_name, status.text].to_json
+  if Ohm.redis.scard( "tweet:#{term}" ) > 1000
+    Ohm.redis.del( "tweet:#{term}" ) 
   end
+  Ohm.redis.sadd "tweet:#{term}", [status.user.screen_name, status.text].to_json
 end
 
