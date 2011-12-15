@@ -27,5 +27,23 @@ end
 
 Bundler.require(:default, Stream::Application.env)
 
-# Preload application classes
-Dir['./app/**/*.rb'].each {|f| require f}
+class HomeAction < Cramp::Action
+  def start
+    @@template = Erubis::Eruby.new(File.read('index.erb'))
+    render @@template.result(binding)
+    finish
+  end
+end
+
+class StreamAction < Cramp::Action
+  self.transport = :sse
+  on_start :send_tweet
+  periodic_timer :send_tweet, :every => 1
+
+  def send_tweet
+    data = Ohm.redis.spop( "tweet:happy" )
+    screen_name = data.split( /,/ )[0].gsub( /^\[|"/, '' )
+    render data
+  end
+end
+

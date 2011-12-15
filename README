@@ -1,3 +1,6 @@
 # to launch:
 
 bundle exec foreman start
+
+# to make sure both workers are running on heroku:
+# heroku scale web=1 tweet_harvester+1
