@@ -5,6 +5,8 @@ require "ohm"
 require "tweetstream"  
 require "yajl/json_gem"
 
+Ohm.connect( :url => "redis://redistogo:c2c3b31a37eb49b65ca6d3dbb6aa09d2@stingfish.redistogo.com:9355/" )
+
 TweetStream.configure do |config|
   config.consumer_key       = Ohm.redis.get "cfg:consumer_key"
   config.consumer_secret    = Ohm.redis.get "cfg:consumer_secret"
