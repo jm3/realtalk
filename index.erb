@@ -1,0 +1,30 @@
+<html>
+  <head> 
+    <title>Super Simple Chat with Sinatra</title> 
+    <meta charset="utf-8" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> 
+  </head> 
+  <body>
+
+    <pre id='chat'></pre>
+
+    <script>
+      // reading
+      var es = new EventSource('/stream');
+      es.onmessage = function(e) { $('#chat').append(e.data + "\n") };
+
+      // writing
+      $("form").live("submit", function(e) {
+        $.post('/', {msg: "sdf: " + $('#msg').val()});
+        $('#msg').val(''); $('#msg').focus();
+        e.preventDefault();
+      });
+    </script>
+
+    <form>
+      <input id='msg' placeholder='type message here...' />
+    </form>
+
+  </body>
+</html>
+
