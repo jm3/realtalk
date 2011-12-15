@@ -1,6 +1,7 @@
 design a rad UI for it in photoshop
 support pausing from the browser (should be easy)
 support changing the query term from the browser (could be tough)
+put REDIS togo URL somewhere non-public
 
 DONE get tweets pulling down from twitter's streaming API
 DONE get tweets loading into redis
