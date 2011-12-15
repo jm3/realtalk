@@ -14,7 +14,11 @@ module Stream
     end
 
     def self.routes
-      @_routes ||= eval(File.read('./config/routes.rb'))
+      # Check out https://github.com/joshbuddy/http_router for more information on HttpRouter
+      @_routes ||= HttpRouter.new do
+        add('/').to(HomeAction)
+        add('/stream').to(StreamAction)
+      end
     end
 
     # Initialize the application
