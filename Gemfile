@@ -9,4 +9,5 @@ gem "json" # for to_json shit
 gem "ohm" # for redis
 gem "thin" # Async webserver for running a cramp application
 gem "tilt" # Generic interface to multiple Ruby template engines - https://github.com/rtomayko/tilt
+gem "SystemTimer"
 gem "tweetstream" # duh

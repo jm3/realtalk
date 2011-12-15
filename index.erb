@@ -3,33 +3,52 @@
     <title> Links are just lights in the city. </title> 
     <meta charset="utf-8" />
     <style>
+
       #page {
         margin-top: 20px;
       }
+
       * {
         font-family: sans-serif;
         font-size: 14px;
       }
+
       #tweets {
         width: 600px;
         margin: 0 auto;
       }
+
       .tweet {
         clear: both;
         height: 70px;
         background-color: #eee;
         padding: 10px;
+        margin: 0 0 10px 0;
       }
+
+      .tweet:hover {
+        background-color: #ccc;
+      }
+
+      .tweet:hover .icon{
+        border: 2px solid #666;
+      }
+
       .tweet .icon {
         width: 48px;
         height: 48px;
         margin: 10px;
         float: left;
+        background-color: #bbb;
+        border: 2px solid #888;
       }
+
       .tweet .text {
         display: block;
-        padding: 10px;
+        padding: 14px;
+        color: #555;
       }
+
     </style>
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> 
@@ -46,7 +65,7 @@
           var tweet = jQuery.parseJSON( e.data );
           $("#tweets").prepend("<div class='tweet' data-screen-name='" + tweet[0] + "'>" 
           + "<a target='tweet' href='http://twitter.com/" + tweet[0] + "'>"
-          + "<div class='icon' style='background:url(http://img.tweetimag.es/i/" + tweet[0]  +"_n);' />"
+          + "<div class='icon' style='background-image:url(http://img.tweetimag.es/i/" + tweet[0]  +"_n);' />"
           + "</a>"
           + "<span class='text'>"
           + tweet[1]
@@ -58,4 +77,3 @@
 
   </body>
 </html>
-
