@@ -3,6 +3,7 @@
 
 require "ohm"  
 require "tweetstream"  
+require "yajl/json_gem"
 
 TweetStream.configure do |config|
   config.consumer_key       = Ohm.redis.get "cfg:consumer_key"
@@ -16,7 +17,6 @@ end
 
 term = ARGV[0] || "happy"
 @tracker = TweetStream::Client.new.track( term ) do |status|
-  puts "[#{status.user.screen_name}] #{status.text}"
-  Ohm.redis.sadd "tweet:#{term}", [ status.user.screen_name, status.text ]
+  Ohm.redis.sadd "tweet:#{term}", [status.user.screen_name, status.text].to_json
 end
 
