@@ -14,3 +14,11 @@ es.onmessage = function(e) {
   + "</div>");
 };
 
+var SECONDS_TILL_CLEANUP = 30;
+function prune_dom() {
+  var t = $("#tweets");
+  t.children().slice( parseInt( t.children().size() / 2), (t.children().size())).replaceWith( "" );
+  // $("#tweets").empty();
+  setTimeout("prune_dom()", SECONDS_TILL_CLEANUP * 1000);
+}
+window.setTimeout(prune_dom, SECONDS_TILL_CLEANUP * 1000, true);
