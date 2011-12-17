@@ -14,7 +14,6 @@ module Stream
     end
 
     def self.routes
-      # Check out https://github.com/joshbuddy/http_router for more information on HttpRouter
       @_routes ||= HttpRouter.new do
         add("/").to(HomeAction)
         add("/stream").to(StreamAction)
