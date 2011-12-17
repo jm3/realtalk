@@ -12,6 +12,5 @@ gem "yajl-ruby"   # for tweetstream
 
 group :development do
   gem "heroku"      # one-button deploys
-  gem "SystemTimer" # stop redis from whining
 end
 
