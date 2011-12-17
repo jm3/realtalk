@@ -1,3 +1,9 @@
+# twitter oauth creds:
+export OAUTH_KEY=AAA
+export OAUTH_SECRET=BBB
+export OAUTH_ACCESS_TOKEN=CCC
+export OAUTH_TOKEN_SECRET=DDD
+
 # this will be auto-created for you after running "heroku create"
 # and adding the Redis-to-Go Heroku AddOn to your project:
 export REDIS_URL="redis://redistogo:0xDEADBEEF@bongs.redistogo.com:9355/"
