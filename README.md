@@ -12,9 +12,11 @@
 ### Usage:
 
     bundle
+    <fill in credentials file>
+    bundle exec sh credentials.sh
     bundle exec foreman start
 
-### to make sure both workers are running on heroku:
+### change heroku default of 0 workers to 1:
 
     heroku scale web=1 tweet_harvester+1
 
