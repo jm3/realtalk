@@ -6,17 +6,20 @@
 
 ### Features:
 
-* supports with Heroku and Foreman
-* for roadmap, see the Issues tab
+* runs (out of the box) on Heroku using Foreman, Redis, and Cramp
 
 ### Usage:
 
+    # install gems
     bundle
-    <fill in credentials file>
+
+    # fill in credentials file, then...
+    # store credentials for the app to read
     bundle exec sh credentials.sh
+
+    # start the process group
     bundle exec foreman start
 
-### change heroku default of 0 workers to 1:
-
+    # change heroku default of 0 workers to 1:
     heroku scale web=1 tweet_harvester+1
 
