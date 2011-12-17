@@ -1,4 +1,6 @@
 require "bundler"
+require "oauth"
+require "oauth/consumer"
 require "rubygems"
 
 module Stream
@@ -22,7 +24,7 @@ module Stream
 
     # Initialize the application
     def self.initialize!
-      Ohm.connect( :url => "redis://redistogo:c2c3b31a37eb49b65ca6d3dbb6aa09d2@stingfish.redistogo.com:9355/" )
+      Ohm.connect( :url => ENV["REDIS_URL"] )
     end
 
   end
