@@ -10,6 +10,15 @@ if Stream::Application.env == 'development'
 end
 
 # Serve static assets
-use Rack::Static, :urls => ["/images", "/javascripts", "/stylesheets"], :root => Stream::Application.root(:public)
+use Rack::Static,
+  :urls => ["/images", "/javascripts", "/stylesheets"],
+  :root => Stream::Application.root(:public)
+
+use Rack::Session::Cookie, 
+  :key => 'rack.session',
+  :domain => 'realtalk.herokuapp.com',
+  :path => '/',
+  :expire_after => (30 * 24 * 60 * 60),
+  :secret => ENV["RACK_SESSION_SECRET"]
 
 run Stream::Application.routes
