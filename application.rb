@@ -34,8 +34,7 @@ Bundler.require(:default, Stream::Application.env)
 
 class HomeAction < Cramp::Action
   def start
-    @@template = Erubis::Eruby.new(File.read("views/index.erb"))
-    render @@template.result(binding)
+    render Haml::Engine.new(File.read("views/index.haml")).render
     finish
   end
 end

@@ -1,0 +1,27 @@
+%html
+  %head
+    %title #REALTALK - realtime tweet streaming with Redis + Cramp
+    %meta{:charset => "utf-8"}/
+    %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"}
+    %link{:href => "/stylesheets/screen.css", :rel => "stylesheet", :type => "text/css"}
+      %link{:href => "//fonts.googleapis.com/css?family=Chicle", :rel => "stylesheet", :type => "text/css"}
+        %link{:href => "/images/favicon.png", :rel => "icon", :type => "image/png"}
+  %body
+    #page
+      %h1
+        Real-time Tweets From Happy People
+      %h2
+        Tweets pulled from the Twitter firehose in real-time and
+        streamed to your browser using HTML5 Server-Sent Events,
+        because who has time to wait?
+      %h3
+        by John Manoogian III /
+        = succeed "." do
+          %a{:href => "http://www.jm3.net/"} jm3
+        You might like
+        = succeed "." do
+          %a{:href => "http://twitter.com/jm3"} following me on Twitter
+        = succeed "." do
+          %a{:href => "//github.com/jm3/realtalk"} Source code
+      #tweets
+      %script{:src => "/javascripts/app.js"}
