@@ -6,7 +6,7 @@
 
 ### Features:
 
-* runs (out of the box) on Heroku using Foreman, Redis, and Cramp
+* runs (out of the box) on Heroku using [Foreman](http://ddollar.github.com/foreman/), [Redis](http://redis.io/), and [Cramp](http://cramp.in)
 
 ### Usage:
 
