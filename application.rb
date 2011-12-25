@@ -19,10 +19,10 @@ module Stream
       @_routes ||= HttpRouter.new do
         add("/").to(HomeAction)
         add("/stream").to(StreamAction)
+        add("/tracker").to(ConfigAction)
       end
     end
 
-    # Initialize the application
     def self.initialize!
       Ohm.connect( :url => ENV["REDIS_URL"] )
     end
@@ -34,7 +34,7 @@ Bundler.require(:default, Stream::Application.env)
 
 class HomeAction < Cramp::Action
   def start
-    @@template = Erubis::Eruby.new(File.read("index.erb"))
+    @@template = Erubis::Eruby.new(File.read("views/index.erb"))
     render @@template.result(binding)
     finish
   end
@@ -48,6 +48,35 @@ class StreamAction < Cramp::Action
   def send_tweet
     data = Ohm.redis.spop( "tweet:happy" )
     render data if data
+  end
+end
+
+class ConfigAction < Cramp::Action
+  def start
+    kind = params[:kind]
+    value = params[:value]
+    @status = "noop"
+
+    case kind
+    when "hashtag", "keyword", "screen_name"
+      if ! value.empty?
+        puts "got valid trackable kind #{kind}!"
+        Ohm.redis.set( "cfg:track:kind", kind)
+        Ohm.redis.set( "cfg:track:value", value)
+        @status = "success"
+      end
+    else
+      puts "Now you're just making shit up!"
+    end
+
+    new_kind = Ohm.redis.get("cfg:track:kind")
+    new_value = Ohm.redis.get("cfg:track:value")
+
+    puts "kind is now: #{new_kind}"
+    puts "value is now: #{new_value}"
+
+    render "{'tracker_created': '#{@status}', 'value': '#{new_value}','kind': '#{new_kind}' }"
+    finish
   end
 end
 
