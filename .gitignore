@@ -5,4 +5,4 @@ credentials.sh
 *~
 .bundle
 .foreman
-.gems
+vendor
