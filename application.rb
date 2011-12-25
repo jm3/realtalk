@@ -46,13 +46,14 @@ class StreamAction < Cramp::Action
   periodic_timer :send_tweet, :every => 1
 
   def send_tweet
-    data = Ohm.redis.spop( "tweet:happy" )
+    data = Ohm.redis.spop( "tweet:#{Ohm.redis.get("cfg:track:kind")}:#{Ohm.redis.get("cfg:track:query")}" )
     render data if data
   end
 end
 
 class ConfigAction < Cramp::Action
   def start
+
     kind = params[:kind]
     value = params[:value]
     @status = "noop"

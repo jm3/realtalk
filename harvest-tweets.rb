@@ -5,6 +5,9 @@ require "ohm"
 require "tweetstream"  
 require "yajl/json_gem"
 
+DEFAULT_KIND    = "keyword"
+DEFAULT_KEYWORD = "happy"
+
 Ohm.connect( :url => ENV["REDIS_URL"] )
 
 TweetStream.configure do |config|
@@ -17,11 +20,29 @@ TweetStream.configure do |config|
   config.parser   = :yajl
 end
 
-term = ARGV[0] || "happy"
-@tracker = TweetStream::Client.new.track( term ) do |status|
-  if Ohm.redis.scard( "tweet:#{term}" ) > 1000
-    Ohm.redis.del( "tweet:#{term}" ) 
+kind  = Ohm.redis.get("cfg:track:kind")  || ARGV[0] || DEFAULT_KIND
+query = Ohm.redis.get("cfg:track:query") || ARGV[1] || DEFAULT_KEYWORD
+
+if query.empty?
+  puts "ERROR: no term to track"
+  exit
+end
+
+Ohm.redis.set("cfg:track:kind", kind)
+Ohm.redis.set("cfg:track:query", query)
+
+loop do
+  TweetStream::Client.new.track( query ) do |status, client|
+    # if we've received a new tracking request, immediately bail & reload
+    client.stop if Ohm.redis.get( "cfg:track:kind" ) != kind or Ohm.redis.get( "cfg:track:query" ) != query
+
+    if Ohm.redis.scard( "tweet:#{kind}:#{query}" ) > 1000
+      Ohm.redis.del( "tweet:#{kind}:#{query}" )
+    end
+    Ohm.redis.sadd "tweet:#{kind}:#{query}", [status.user.screen_name, status.text].to_json
   end
-  Ohm.redis.sadd "tweet:#{term}", [status.user.screen_name, status.text].to_json
+
+  kind  = Ohm.redis.get("cfg:track:kind")  || DEFAULT_KIND
+  query = Ohm.redis.get("cfg:track:query") || DEFAULT_KEYWORD
 end
 
