@@ -1,6 +1,4 @@
 require "bundler"
-require "oauth"
-require "oauth/consumer"
 require "rubygems"
 
 module Stream
