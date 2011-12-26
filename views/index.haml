@@ -38,7 +38,10 @@
         .well
           %h5 About the author
           %p
-            jm3 is founder and CTO of 140&nbsp;Proof. He hacks on fun projects like this on the side.
+            jm3 is founder and CTO of 
+            = succeed "." do
+              %a{:href => "//twitter.com/intent/user?screen_name=140ProofAds"} 140&nbsp;Proof
+            He hacks on fun projects like this on the side.
           %ul
             %li
               %a{:href => "//twitter.com/intent/user?screen_name=jm3"} Twitter
@@ -51,17 +54,17 @@
           %h5 Colophon
           %ul
             %li
-              Templating by
-              %a{:href => "//haml-lang.com/"} Haml
-            %li
-              Polished by
-              %a{:href => "//coffeescript.org/"} Coffeescript
-            %li
               Asynchrony by
               %a{:href => "//cramp.in/"} Cramp
             %li
               Pub/Sub by
               %a{:href => "//redis.io/"} Redis
+            %li
+              Templating by
+              %a{:href => "//haml-lang.com/"} Haml
+            %li
+              Polished by
+              %a{:href => "//coffeescript.org/"} Coffeescript
             %li
               DOM by
               %a{:href => "//redis.io/"} Bootstrap
