@@ -63,11 +63,11 @@
               Templating by
               %a{:href => "//haml-lang.com/"} Haml
             %li
-              Polished by
+              JS polish by
               %a{:href => "//coffeescript.org/"} Coffeescript
             %li
-              DOM by
-              %a{:href => "//redis.io/"} Bootstrap
+              Grid by
+              %a{:href => "http://twitter.github.com/bootstrap/"} Bootstrap
             %li
               Powered by
               %a{:href => "//www.ruby-lang.org/en/"} Ruby
@@ -79,11 +79,6 @@
         .hero-unit
           %h1 #Realtalk
 
-          %p
-            Tweets streamed in real time from Twitter Inc&rsquo;s firehose 
-            to your browser using HTML5 Server-Sent Events,
-            cause who the fuck has time to wait?
-
           %h3
             by John Manoogian III /
             = succeed "." do
@@ -91,6 +86,17 @@
             You&rsquo;ll likely enjoy
             = succeed "." do
               %a{:href => "//twitter.com/intent/user?screen_name=jm3"} following me on Twitter
+
+          %br
+
+          %p
+            Tweets streamed in real time from Twitter Inc&rsquo;s firehose
+            to your browser using HTML5 Server-Sent Events,
+            %br#not_semantic_but_i_dont_give_a_fuck_i_want_a_fucking_line_break
+            because who really has time to wait for tweets?
+
+          %h3
+            Currently streaming &ldquo;<span class="query">happy</span>&rdquo; tweets:
 
           %form#config{:action => "#", :name => "config"}
             %input#query{:placeholder => "happy", :name => "query"}
