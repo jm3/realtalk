@@ -8,9 +8,8 @@
       / Le HTML5 shim, for IE6-8 support of HTML elements
       /[if lt IE 9]
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-      %link{:rel => "stylesheet", :href => "http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css"}/
+      %link{:rel => "stylesheet", :href => "//twitter.github.com/bootstrap/1.4.0/bootstrap.min.css"}/
       %link{:rel => "stylesheet", :href => "/stylesheets/screen.css"}/
-      %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"}
 
       :css
         body { padding-top: 60px; }
@@ -26,29 +25,56 @@
             %li.active
               %a{:href => "#"} Home
             %li
-              %a{:href => "http://www.jm3.net/"} About
+              %a{:href => "//www.jm3.net/"} About
             %li
               %a{:href => "mailto:jm3@jm3.net"} Contact
           %p.pull-right
             Created by
-            %a{:href => "http://www.jm3.net/"} jm3
+            %a{:href => "//www.jm3.net/"} jm3
 
     .container-fluid
       .sidebar
-        .well
-          %h5 For future expansion
 
+        .well
+          %h5 About the author
+          %p
+            jm3 is founder and CTO of 140&nbsp;Proof. He hacks on fun projects like this on the side.
           %ul
             %li
-              %a{:href => "http://twitter.com/jm"} Twitter
+              %a{:href => "//twitter.com/intent/user?screen_name=jm3"} Twitter
             %li
-              %a{:href => "http://www.jm3.net/"} Web
+              %a{:href => "//www.jm3.net/"} Web
             %li
-              %a{:href => "http://github.com/jm3/realtalk"} Code
+              %a{:href => "//github.com/jm3/realtalk"} Code
+
+        .well
+          %h5 Colophon
+          %ul
+            %li
+              Templating by
+              %a{:href => "//haml-lang.com/"} Haml
+            %li
+              Polished by
+              %a{:href => "//coffeescript.org/"} Coffeescript
+            %li
+              Asynchrony by
+              %a{:href => "//cramp.in/"} Cramp
+            %li
+              Pub/Sub by
+              %a{:href => "//redis.io/"} Redis
+            %li
+              DOM by
+              %a{:href => "//redis.io/"} Bootstrap
+            %li
+              Powered by
+              %a{:href => "//www.ruby-lang.org/en/"} Ruby
+            %li
+              Hosted by
+              %a{:href => "//heroku.com/"} Heroku
 
       .content
         .hero-unit
-          %h1 REALTALK
+          %h1 #Realtalk
 
           %p
             Tweets streamed in real time from Twitter Inc&rsquo;s firehose 
@@ -58,13 +84,10 @@
           %h3
             by John Manoogian III /
             = succeed "." do
-              %a{:href => "http://www.jm3.net/"} jm3
+              %a{:href => "//www.jm3.net/"} jm3
             You&rsquo;ll likely enjoy
             = succeed "." do
-              %a{:href => "http://twitter.com/jm3"} following me on Twitter
-            View the
-            = succeed "." do
-              %a{:href => "//github.com/jm3/realtalk"} source code
+              %a{:href => "//twitter.com/intent/user?screen_name=jm3"} following me on Twitter
 
           %form#config{:action => "#", :name => "config"}
             %input#query{:placeholder => "happy", :name => "query"}
@@ -74,28 +97,26 @@
             %a.btn.primary.large Update
 
           #tweets
-          %script{:src => "/javascripts/app.js"}
 
           %p
-            %a.btn.primary.large Learn more »
         / row of columns
         .row
 
           .span6
             %h2 Why Redis Rocks
             %p 
-              Etiam porta sem malesuada magna mollis euismod. Integer
-              posuere erat a ante venenatis dapibus posuere velit
-              aliquet. Aenean eu leo quam. Pellentesque ornare sem
-              lacinia quam venenatis vestibulum. Duis mollis, est
-              non commodo luctus, nisi erat porttitor ligula, eget
-              lacinia odio sem nec elit.
+              Someday soon I will explain why Redis is an awesome
+              data structure server. But not today. Etiam porta sem
+              malesuada magna mollis euismod. Integer posuere erat
+              a ante venenatis dapibus posuere velit aliquet. Aenean
+              eu leo quam. Pellentesque ornare sem lacinia quam
+              venenatis vestibulum.
 
             %p
               %a.btn{:href => "#"} View details »
 
           .span5
-            %h2 How Ruby Rules
+            %h2 A Coffee conundrum
             %p 
               Donec id elit non mi porta gravida at eget metus.
               Fusce dapibus, tellus ac cursus commodo, tortor mauris
@@ -107,7 +128,7 @@
               %a.btn{:href => "#"} View details »
 
           .span5
-            %h2 The Death of Reloading
+            %h2 The End of Reloading
             %p 
               Donec sed odio dui. Cras justo odio, dapibus ac
               facilisis in, egestas eget quam. Vestibulum id ligula
@@ -122,3 +143,6 @@
           %footer
             %p © jm3, 2012
 
+          %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"}
+          %script{:src => "/javascripts/app.js"}
+          %script{:src => "//platform.twitter.com/widgets.js"}
