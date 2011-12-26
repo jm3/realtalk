@@ -4,3 +4,5 @@
 *~
 credentials.sh
 .gems
+public/javascripts
+tmp/

@@ -1,18 +1,28 @@
 require "./application"
 Stream::Application.initialize!
 
-# Development middlewares
-if Stream::Application.env == "development"
-  use AsyncRack::CommonLogger
+  if Stream::Application.env == "development"
+    use AsyncRack::CommonLogger
 
-  # Enable code reloading on every request
-  use Rack::Reloader, 0
-end
+    # Enable code reloading on every request
+    use Rack::Reloader, 0
+  end
+
+# compile coffeescript on the fly
+use Barista::Filter if Barista.add_filter?
+
+# automatically serve coffeescript
+use Barista::Server::Proxy
 
 # Serve static assets
 use Rack::Static,
-  :urls => ["/images", "/javascripts", "/stylesheets"],
+  :urls => ["/images", "/stylesheets"],
   :root => Stream::Application.root(:public)
+
+# serve compiled js from tmp because heroku hates writeable fs
+use Rack::Static,
+  :urls => ["/javascripts"],
+  :root => Stream::Application.root(:tmp)
 
 use Rack::Session::Cookie, 
   :key => "rack.session",

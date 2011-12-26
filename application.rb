@@ -30,6 +30,15 @@ end
 
 Bundler.require(:default, Stream::Application.env)
 
+Barista.configure do |b|
+  b.app_root    = Stream::Application.root
+  b.root        = File.join(Stream::Application.root, "views")
+  b.output_root = File.join(Stream::Application.root, "tmp")
+  b.setup_defaults
+end
+
+require "fileutils"
+
 class HomeAction < Cramp::Action
   def start
     render Haml::Engine.new(File.read("views/index.haml")).render
