@@ -1,8 +1,6 @@
 *.DS_Store
-credentials.sh
 *.swo
 *.swp
 *~
-.bundle
-.foreman
-vendor
+credentials.sh
+.gems
