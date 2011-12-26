@@ -70,9 +70,6 @@ class ConfigAction < Cramp::Action
     new_kind = Ohm.redis.get("cfg:track:kind")
     new_query = Ohm.redis.get("cfg:track:query")
 
-    puts "kind is now: #{new_kind}"
-    puts "query is now: #{new_query}"
-
     render "{'tracker_created': '#{@status}', 'query': '#{new_query}','kind': '#{new_kind}' }"
     finish
   end
