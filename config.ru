@@ -2,7 +2,7 @@ require "./application"
 Stream::Application.initialize!
 
 # Development middlewares
-if Stream::Application.env == 'development'
+if Stream::Application.env == "development"
   use AsyncRack::CommonLogger
 
   # Enable code reloading on every request
@@ -15,9 +15,9 @@ use Rack::Static,
   :root => Stream::Application.root(:public)
 
 use Rack::Session::Cookie, 
-  :key => 'rack.session',
-  :domain => 'realtalk.herokuapp.com',
-  :path => '/',
+  :key => "rack.session",
+  :domain => "realtalk.herokuapp.com",
+  :path => "/",
   :expire_after => (30 * 24 * 60 * 60),
   :secret => ENV["RACK_SESSION_SECRET"]
 
