@@ -60,17 +60,20 @@
               Pub/Sub by
               %a{:href => "//redis.io/"} Redis
             %li
+              Powered by
+              %a{:href => "//www.ruby-lang.org/en/"} Ruby
+            %li
               Templating by
               %a{:href => "//haml-lang.com/"} Haml
-            %li
-              JS polish by
-              %a{:href => "//coffeescript.org/"} Coffeescript
             %li
               Grid by
               %a{:href => "http://twitter.github.com/bootstrap/"} Bootstrap
             %li
-              Powered by
-              %a{:href => "//www.ruby-lang.org/en/"} Ruby
+              Compat by
+              %a{:href => "//jquery.com/"} jQuery
+            %li
+              JS polish by
+              %a{:href => "//coffeescript.org/"} Coffeescript
             %li
               Hosted by
               %a{:href => "//heroku.com/"} Heroku
@@ -92,8 +95,7 @@
           %p
             Tweets streamed in real time from Twitter Inc&rsquo;s firehose
             to your browser using HTML5 Server-Sent Events,
-            %br#not_semantic_but_i_dont_give_a_fuck_i_want_a_fucking_line_break
-            because who really has time to wait for tweets?
+            because who really has time to wait for&nbsp;tweets?
 
           %h3
             Currently streaming &ldquo;<span class="query">happy</span>&rdquo; tweets:
@@ -103,7 +105,7 @@
 
             %input#kind{:type => "hidden", :name => "kind", :value => "keyword"}
 
-            %a.btn.primary.large Update
+            %a.btn.primary.large New Stream
 
           #tweets
 
