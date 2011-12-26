@@ -1,5 +1,6 @@
 require "bundler"
 require "rubygems"
+require "fileutils"
 
 module Stream
   class Application
@@ -30,15 +31,6 @@ end
 
 Bundler.require(:default, Stream::Application.env)
 
-Barista.configure do |b|
-  b.app_root    = Stream::Application.root
-  b.root        = File.join(Stream::Application.root, "views")
-  b.output_root = File.join(Stream::Application.root, "tmp")
-  b.setup_defaults
-end
-
-require "fileutils"
-
 class HomeAction < Cramp::Action
   def start
     render Haml::Engine.new(File.read("views/index.haml")).render
@@ -48,10 +40,9 @@ end
 
 class StreamAction < Cramp::Action
   self.transport = :sse
-  on_start :send_tweet
-  periodic_timer :send_tweet, :every => 1
+  periodic_timer :stream_new_event, :every => 1
 
-  def send_tweet
+  def stream_new_event
     data = Ohm.redis.spop( "tweet:#{Ohm.redis.get("cfg:track:kind")}:#{Ohm.redis.get("cfg:track:query")}" )
     render data if data
   end
@@ -82,5 +73,13 @@ class ConfigAction < Cramp::Action
     render "{\"tracker_created\": \"#{@status}\", \"query\": \"#{new_query}\",\"kind\": \"#{new_kind}\" }"
     finish
   end
+end
+
+# set up coffeescript compiler
+Barista.configure do |b|
+  b.app_root    = Stream::Application.root
+  b.root        = File.join(Stream::Application.root, "views")
+  b.output_root = File.join(Stream::Application.root, "tmp")
+  b.setup_defaults
 end
 
