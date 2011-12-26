@@ -5,7 +5,6 @@ gem "cramp"       # for everything
 gem "haml"        # for rendering web view
 gem "foreman"     # for managing background worker processes smoothly
 gem "http_router" # Rack based routing  
-gem "oauth"       # for login with twitter
 gem "ohm"         # for redis
 gem "thin"        # (NO IDEA) Async webserver for running a cramp application
 gem "tweetstream" # duh
