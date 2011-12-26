@@ -28,9 +28,9 @@
             %li.active
               %a{:href => "#"} Home
             %li
-              %a{:href => "#about"} About
+              %a{:href => "http://www.jm3.net/"} About
             %li
-              %a{:href => "#contact"} Contact
+              %a{:href => "mailto:jm3@jm3.net"} Contact
           %p.pull-right
             Logged in as
             %a{:href => "#"} jm3
@@ -38,38 +38,22 @@
     .container-fluid
       .sidebar
         .well
-          %h5 Sidebar
+          %h5 For future expansion
 
           %ul
             %li
-              %a{:href => "#"} Link
+              %a{:href => "http://twitter.com/jm"} Twitter
             %li
-              %a{:href => "#"} Link
+              %a{:href => "http://www.jm3.net/"} Web
             %li
-              %a{:href => "#"} Link
-
-          %h5 Sidebar
-          %ul
-            %li
-              %a{:href => "#"} Link
-              %a{:href => "#"} Link
-            %li
-              %a{:href => "#"} Link
-
-          %h5 Sidebar
-          %ul
-            %li
-              %a{:href => "#"} Link
-            %li
-              %a{:href => "#"} Link
+              %a{:href => "http://github.com/jm3/realtalk"} Code
 
       .content
-        / Main hero unit for a primary marketing message or call to action
         .hero-unit
           %h1 REALTALK
 
           %p
-            Tweets streamed in real time from Twitter Inc's firehose 
+            Tweets streamed in real time from Twitter Inc&rsquo;s firehose 
             to your browser using HTML5 Server-Sent Events,
             cause who the fuck has time to wait?
 
@@ -87,17 +71,16 @@
           %form#config{:action => "#", :name => "config"}
             %input#query{:placeholder => "happy", :name => "query"}
 
-            %select#kind{:name => "kind"}
-              %option keyword
-              %option hashtag
-              %option screen_name
+            %input#kind{:type => "hidden", :name => "kind", :value => "keyword"}
+
+            %a.btn.primary.large Update
 
           #tweets
           %script{:src => "/javascripts/app.js"}
 
           %p
             %a.btn.primary.large Learn more »
-        / Example row of columns
+        / row of columns
         .row
 
           .span6
@@ -126,7 +109,7 @@
               %a.btn{:href => "#"} View details »
 
           .span5
-            %h2 Forever Alone
+            %h2 The Death of Reloading
             %p 
               Donec sed odio dui. Cras justo odio, dapibus ac
               facilisis in, egestas eget quam. Vestibulum id ligula
