@@ -67,7 +67,7 @@ class ConfigAction < Cramp::Action
     case kind
     when "hashtag", "keyword", "screen_name"
       if query and (! query.empty?)
-        puts "got valid trackable kind #{kind}!"
+        puts "now tracking tweets about #{query}!"
         Ohm.redis.set( "cfg:track:kind", kind)
         Ohm.redis.set( "cfg:track:query", query)
         @status = "success"
@@ -79,7 +79,7 @@ class ConfigAction < Cramp::Action
     new_kind = Ohm.redis.get("cfg:track:kind")
     new_query = Ohm.redis.get("cfg:track:query")
 
-    render "{'tracker_created': '#{@status}', 'query': '#{new_query}','kind': '#{new_kind}' }"
+    render "{\"tracker_created\": \"#{@status}\", \"query\": \"#{new_query}\",\"kind\": \"#{new_kind}\" }"
     finish
   end
 end

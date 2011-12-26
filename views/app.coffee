@@ -1,17 +1,17 @@
 # subscribe to events
 es = new EventSource "/stream"
 
-# add tweet to page
+# inject tweets into the page as we receive them
 es.onmessage = (e) ->
   tweet = jQuery.parseJSON e.data
+
+  # pretty-print the HTML to make it somewhat legible
   $("#tweets").prepend "
     <div class='tweet' data-screen-name='#{tweet[0]}'>
-      <a target='tweet' href='http://twitter.com/#{tweet[0]}'>
-        <div class='icon' style='background-image:url(http://img.tweetimag.es/i/#{tweet[0]}_n);' />
+      <a target='tweet' href='//twitter.com/#{tweet[0]}'>
+        <div class='icon' style='background-image:url(//img.tweetimag.es/i/#{tweet[0]}_n);' />
       </a>
-      <span class='text'>
-        #{tweet[1]}
-      </span>
+      <span class='text'>#{tweet[1]}</span>
     </div>
     "
 
@@ -19,8 +19,10 @@ es.onmessage = (e) ->
 init_ui = () ->
   $("#config").submit () ->
     qs = $(this).serialize()
+
+    # display feedback to the user that we're now tracking her query
     $.getJSON "/tracker?" + qs, (data) ->
-      # TODO handle errors
+      $(".query").html data.query if data.tracker_created == "success"
     return false
 
 $(document).ready () ->
