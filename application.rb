@@ -41,10 +41,26 @@ end
 class StreamAction < Cramp::Action
   self.transport = :sse
   periodic_timer :stream_new_event, :every => 1
+  on_start :user_connected
+  on_finish :user_left
+  @@users = Set.new
+
+  def user_connected
+    @@users << self
+    puts "user ##{@@users.size} connected"
+  end
+
+  def user_left
+    @@users.delete self
+    puts "user left (#{@@users.size} remaining)"
+    finish
+  end
 
   def stream_new_event
     data = Ohm.redis.spop( "tweet:#{Ohm.redis.get("cfg:track:kind")}:#{Ohm.redis.get("cfg:track:query")}" )
-    render data if data
+    if data
+      @@users.each { |u| u.render data }
+    end
   end
 end
 
