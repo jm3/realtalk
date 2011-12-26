@@ -9,6 +9,7 @@
 
   %body
     #page
+
       %h1
         Real-time Tweets From Happy People
       %h2
@@ -24,6 +25,18 @@
           %a{:href => "http://twitter.com/jm3"} following me on Twitter
         = succeed "." do
           %a{:href => "//github.com/jm3/realtalk"} Source code
+
+      %form#config{:action => "#", :name => "config"}
+        %input#query{:placeholder => "happy", :name => "query"}
+
+        %select#kind{:name => "kind"}
+          %option keyword
+          %option hashtag
+          %option screen_name
+
+        %button Mo Talk
+
       #tweets
       %script{:src => "/javascripts/app.js"}
+
 

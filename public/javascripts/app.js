@@ -14,11 +14,26 @@ es.onmessage = function(e) {
   + "</div>");
 };
 
+/* update search query on the fly  */
+function init_ui() {
+  $('#config').submit(function() {
+    var qs = $(this).serialize();
+    console.log( qs );
+    $.getJSON("/tracker?" + qs, function(data) {
+      // TODO handle errors
+    });
+    return false;
+  });
+}
+
+$(document).ready( function() {
+  init_ui();
+});
+
 var SECONDS_TILL_CLEANUP = 30;
 function prune_dom() {
   var t = $("#tweets");
   t.children().slice( parseInt( t.children().size() / 2), (t.children().size())).replaceWith( "" );
-  // $("#tweets").empty();
   setTimeout("prune_dom()", SECONDS_TILL_CLEANUP * 1000);
 }
 window.setTimeout(prune_dom, SECONDS_TILL_CLEANUP * 1000, true);

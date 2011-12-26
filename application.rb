@@ -54,15 +54,15 @@ class ConfigAction < Cramp::Action
   def start
 
     kind = params[:kind]
-    value = params[:value]
+    query = params[:query]
     @status = "noop"
 
     case kind
     when "hashtag", "keyword", "screen_name"
-      if ! value.empty?
+      if query and (! query.empty?)
         puts "got valid trackable kind #{kind}!"
         Ohm.redis.set( "cfg:track:kind", kind)
-        Ohm.redis.set( "cfg:track:value", value)
+        Ohm.redis.set( "cfg:track:query", query)
         @status = "success"
       end
     else
@@ -70,12 +70,12 @@ class ConfigAction < Cramp::Action
     end
 
     new_kind = Ohm.redis.get("cfg:track:kind")
-    new_value = Ohm.redis.get("cfg:track:value")
+    new_query = Ohm.redis.get("cfg:track:query")
 
     puts "kind is now: #{new_kind}"
-    puts "value is now: #{new_value}"
+    puts "query is now: #{new_query}"
 
-    render "{'tracker_created': '#{@status}', 'value': '#{new_value}','kind': '#{new_kind}' }"
+    render "{'tracker_created': '#{@status}', 'query': '#{new_query}','kind': '#{new_kind}' }"
     finish
   end
 end
