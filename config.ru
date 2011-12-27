@@ -7,9 +7,6 @@ Stream::Application.initialize!
     use Rack::Reloader, 0 # reload code on every request
   end
 
-# compile coffeescript on the fly
-use Barista::Filter if Barista.add_filter?
-
 # automatically serve coffeescript
 use Barista::Server::Proxy
 
