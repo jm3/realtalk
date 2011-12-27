@@ -47,7 +47,7 @@ class StreamAction < Cramp::Action
 
   def user_connected
     @@users << self
-    puts "user ##{@@users.size} connected"
+    puts "user ##{@@users.size} connected to stream"
   end
 
   def user_left
@@ -74,13 +74,11 @@ class ConfigAction < Cramp::Action
     case kind
     when "hashtag", "keyword", "screen_name"
       if query and (! query.empty?)
-        puts "now tracking tweets about #{query}!"
+        puts "switched focus to track tweets about #{query}!"
         Ohm.redis.set( "cfg:track:kind", kind)
         Ohm.redis.set( "cfg:track:query", query)
         @status = "success"
       end
-    else
-      puts "Now you're just making shit up!"
     end
 
     new_kind = Ohm.redis.get("cfg:track:kind")
