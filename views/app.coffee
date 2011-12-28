@@ -23,12 +23,24 @@ es.onmessage = (e) ->
 init_ui = () ->
 
   # show the user what query the current stream is tracking
-  sync_query = () ->
-    $.getJSON "/current-query", (data) ->
+  update_query = () ->
+    $.getJSON "/query/current", (data) ->
       $(".query").html data.query
 
   # on-load, replace the hardcoded query in the DOM with the current one
-  sync_query()
+  update_query()
+
+  # show the user how many users are connected
+  update_user_count = () ->
+    $.getJSON "/users/count", (data) ->
+      n = data.users_count
+      if n == "1"
+        s = n + " user"
+      else
+        s = n + " users"
+      $(".users_count").html s
+
+  update_user_count()
 
   # intercept form submit to allow async updates
   form_interceptor = () ->

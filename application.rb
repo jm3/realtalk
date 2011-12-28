@@ -19,7 +19,8 @@ module Stream
         add("/").to(HomeAction)
         add("/stream").to(StreamAction)
         add("/tracker").to(ConfigAction)
-        add("/current-query").to(CurrentQueryAction)
+        add("/query/current").to(QueryCurrentAction)
+        add("/users/count").to(UsersCountAction)
       end
     end
 
@@ -49,11 +50,13 @@ class StreamAction < Cramp::Action
 
   def user_connected
     @@users << self
+    Ohm.redis.set( "cfg:users:count", @@users.size )
     puts "user ##{@@users.size} connected to stream"
   end
 
   def user_left
     @@users.delete self
+    Ohm.redis.set( "cfg:users:count", @@users.size )
     puts "user left (#{@@users.size} remaining)"
     finish
   end
@@ -66,9 +69,16 @@ class StreamAction < Cramp::Action
   end
 end
 
-class CurrentQueryAction < Cramp::Action
+class QueryCurrentAction < Cramp::Action
   def start
     render "{\"query\": \"#{ Ohm.redis.get( "cfg:track:query" ) }\" }"
+    finish
+  end
+end
+
+class UsersCountAction < Cramp::Action
+  def start
+    render "{\"users_count\": \"#{ Ohm.redis.get( "cfg:users:count" ) }\" }"
     finish
   end
 end
