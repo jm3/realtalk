@@ -21,6 +21,15 @@ es.onmessage = (e) ->
 
 # update search query on the fly
 init_ui = () ->
+
+  # show the user what query the current stream is tracking
+  sync_query = () ->
+    $.getJSON "/current-query", (data) ->
+      $(".query").html data.query
+
+  # on-load, replace the hardcoded query in the DOM with the current one
+  sync_query()
+
   # intercept form submit to allow async updates
   form_interceptor = () ->
     qs = $("#config").serialize()

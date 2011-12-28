@@ -19,6 +19,7 @@ module Stream
         add("/").to(HomeAction)
         add("/stream").to(StreamAction)
         add("/tracker").to(ConfigAction)
+        add("/current-query").to(CurrentQueryAction)
       end
     end
 
@@ -65,9 +66,15 @@ class StreamAction < Cramp::Action
   end
 end
 
+class CurrentQueryAction < Cramp::Action
+  def start
+    render "{\"query\": \"#{ Ohm.redis.get( "cfg:track:query" ) }\" }"
+    finish
+  end
+end
+
 class ConfigAction < Cramp::Action
   def start
-
     kind = params[:kind]
     query = params[:query]
     @status = "noop"
