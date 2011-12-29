@@ -13,7 +13,7 @@ es.onmessage = (e) ->
   t = jQuery.parseJSON e.data
 
   # filter RTs and @messages if requested
-  return if window.real_tweets and (t.text.indexOf( "@") < 2 or t.text.indexOf( "RT") != -1)
+  return if window.real_tweets and (t.in_reply_to_status_id < 2 or t.text.indexOf( "RT") != -1)
 
   # buffer tweets in form for possible CSV save-out later
   $("#buffer").text( t.screen_name + ',"' + t.text.replace( /"/g, '""') + "\"\n" + $("#buffer").text() )
