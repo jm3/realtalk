@@ -38,7 +38,6 @@ init_ui = () ->
   window.update_query = () ->
     $.getJSON "/query/current", (data) ->
       $(".query").html data.query
-      console.log "updating query"
 
   # on-load, replace the hardcoded query in the DOM with the current one
   update_query()
