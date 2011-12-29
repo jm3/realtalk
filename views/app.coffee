@@ -14,10 +14,13 @@ es.onmessage = (e) ->
   # pretty-print the HTML to make it somewhat legible
   $("#tweets").prepend "
     <div class='tweet' data-screen-name='#{t.screen_name}'>
-      <a target='tweet' href='//twitter.com/#!/#{t.screen_name}/status/#{t.id_str}'>
+      <a target='tweet' href='//twitter.com/#!/#{t.screen_name}'>
         <div class='icon' style='background-image:url(//img.tweetimag.es/i/#{t.screen_name}_n);' />
       </a>
-      <span class='text'>#{t.name}: #{t.text}</span>
+      <span class='text'>
+        #{t.name}: #{t.text}
+        <a class='permalink' target='tweet' href='//twitter.com/#!/#{t.screen_name}/status/#{t.id_str}'>#</a>
+      </span>
     </div>
     "
 
