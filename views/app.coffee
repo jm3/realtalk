@@ -11,6 +11,8 @@ es.onmessage = (e) ->
   # tweet
   t = jQuery.parseJSON e.data
 
+  $("#buffer").text( "#{t.screen_name}, #{t.text}\n#{ $("#buffer").text() }" )
+
   # pretty-print the HTML to make it somewhat legible
   $("#tweets").prepend "
     <div class='tweet' data-screen-name='#{t.screen_name}'>

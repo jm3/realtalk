@@ -116,6 +116,9 @@
             %a.btn.primary.large#submit_btn New Stream
             %a.btn.large#pause Pause
 
+          %form#data_storage{:action => "#", :name => "data_storage", :style => "display: none;"}
+            %textarea#buffer{:rows => 6, :cols => 140, :name => "buffer"}
+
           #tweets
 
           %p
