@@ -8,6 +8,7 @@ gem "haml"        # rendering web view
 gem "http_router" # Rack based routing  
 gem "ohm"         # redis
 gem "thin"        # Async webserver for running a cramp application
+gem "tilt"        # for passing locals to haml template
 gem "tweetstream" # for streaming api
 gem "yajl-ruby"   # ↳ tweetstream
 

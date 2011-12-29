@@ -1,6 +1,7 @@
 require "bundler"
 require "rubygems"
 require "fileutils"
+require "tilt"
 
 module Stream
   class Application
@@ -35,7 +36,7 @@ Bundler.require(:default, Stream::Application.env)
 
 class HomeAction < Cramp::Action
   def start
-    render Haml::Engine.new(File.read("views/index.haml")).render
+    render Tilt.new( "views/index.haml" ).render( context = nil, :user_agent => request.env["HTTP_USER_AGENT"] )
     finish
   end
 end
