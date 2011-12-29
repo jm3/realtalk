@@ -36,3 +36,7 @@
 .permalink {
   color: #888;
 }
+
+.name {
+  font-weight: bold;
+}

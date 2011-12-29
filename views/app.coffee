@@ -21,7 +21,7 @@ es.onmessage = (e) ->
         <div class='icon' style='background-image:url(//img.tweetimag.es/i/#{t.screen_name}_n);' />
       </a>
       <span class='text'>
-        #{t.name}: #{t.text}
+        #{t.text} &mdash; <span class='name'>#{t.name}</span>
         <a class='permalink' target='tweet' href='//twitter.com/#!/#{t.screen_name}/status/#{t.id_str}'>#</a>
       </span>
     </div>
