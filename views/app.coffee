@@ -69,7 +69,7 @@ init_ui = () ->
 
   # let the user pause the streaming
   $("#pause_btn").click () ->
-    $("#pause_btn").text if window.paused then "Pause" else "Resume Streaming"
+    $("#pause_btn").text if window.paused then "Pause" else "Resume"
     $(".pausable").toggle()
     window.paused = !window.paused
 
