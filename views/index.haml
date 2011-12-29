@@ -114,7 +114,8 @@
             %input#kind{:type => "hidden", :name => "kind", :value => "keyword"}
 
             %a.btn.primary.large#submit_btn New Stream
-            %a.btn.large#pause Pause
+            %a.btn.large#pause_btn Pause
+            %a.btn.large#csv_btn Download CSV
 
           %form#data_storage{:action => "#", :name => "data_storage", :style => "display: none;"}
             %textarea#buffer{:rows => 6, :cols => 140, :name => "buffer"}

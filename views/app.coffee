@@ -66,8 +66,8 @@ init_ui = () ->
   $("#submit_btn").click form_interceptor
 
   # let the user pause the streaming
-  $("#pause").click () ->
-    $("#pause").text if window.paused then "Pause" else "Resume Streaming"
+  $("#pause_btn").click () ->
+    $("#pause_btn").text if window.paused then "Pause" else "Resume Streaming"
     $(".pausable").toggle()
     window.paused = !window.paused
 
