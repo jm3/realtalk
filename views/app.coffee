@@ -7,15 +7,17 @@ window.paused = false
 # inject tweets into the page as we receive them
 es.onmessage = (e) ->
   return if window.paused
-  tweet = jQuery.parseJSON e.data
+
+  # tweet
+  t = jQuery.parseJSON e.data
 
   # pretty-print the HTML to make it somewhat legible
   $("#tweets").prepend "
-    <div class='tweet' data-screen-name='#{tweet[0]}'>
-      <a target='tweet' href='//twitter.com/#{tweet[0]}'>
-        <div class='icon' style='background-image:url(//img.tweetimag.es/i/#{tweet[0]}_n);' />
+    <div class='tweet' data-screen-name='#{t.screen_name}'>
+      <a target='tweet' href='//twitter.com/#!/#{t.screen_name}/status/#{t.id_str}'>
+        <div class='icon' style='background-image:url(//img.tweetimag.es/i/#{t.screen_name}_n);' />
       </a>
-      <span class='text'>#{tweet[1]}</span>
+      <span class='text'>#{t.name}: #{t.text}</span>
     </div>
     "
 

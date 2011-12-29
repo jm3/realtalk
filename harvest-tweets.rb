@@ -49,7 +49,23 @@ loop do
     if Ohm.redis.scard( "tweet:#{kind}:#{query}" ) > 1000
       Ohm.redis.del( "tweet:#{kind}:#{query}" )
     end
-    Ohm.redis.sadd "tweet:#{kind}:#{query}", [status.user.screen_name, status.text].to_json
+
+    condensed_metadata = {
+      :text                   => status.text,
+      :screen_name            => status.user.screen_name,
+      :name                   => status.user.name,
+      :location               => status.user.location,
+      :lang                   => status.user.lang,
+      :protected              => status.user.protected,
+      :id_str                 => status.id_str,
+      :in_reply_to_user_id    => status.in_reply_to_user_id,
+      :in_reply_to_status_id  => status.in_reply_to_status_id,
+      :hashtags               => status.entities.hashtags,
+      :urls                   => status.entities.urls,
+      :user_mentions          => status.entities.user_mentions,
+    }
+
+    Ohm.redis.sadd "tweet:#{kind}:#{query}", condensed_metadata.to_json
   end
 
   kind  = Ohm.redis.get("cfg:track:kind")  || DEFAULT_KIND
