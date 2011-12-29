@@ -5,6 +5,16 @@ require "ohm"
 require "tweetstream"  
 require "yajl/json_gem"
 
+if ! ENV["OAUTH_KEY"]
+  puts <<-eos
+   ###############################################
+   # warning: no OAuth Key set in environment;   #
+   # did you forget to: source credentials.sh?   #
+   ###############################################
+  eos
+  exit
+end
+
 DEFAULT_KIND    = "keyword"
 DEFAULT_KEYWORD = "happy"
 
@@ -17,7 +27,7 @@ TweetStream.configure do |config|
   config.oauth_token_secret = ENV["OAUTH_TOKEN_SECRET"]
 
   config.auth_method = :oauth
-  config.parser   = :yajl
+  config.parser      = :yajl
 end
 
 kind  = Ohm.redis.get("cfg:track:kind")  || ARGV[0] || DEFAULT_KIND
