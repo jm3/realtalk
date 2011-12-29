@@ -28,9 +28,11 @@ es.onmessage = (e) ->
 init_ui = () ->
 
   # show the user what query the current stream is tracking
-  update_query = () ->
+  # save global ref so we can call it even after we're outta scope
+  window.update_query = () ->
     $.getJSON "/query/current", (data) ->
       $(".query").html data.query
+      console.log "updating query"
 
   # on-load, replace the hardcoded query in the DOM with the current one
   update_query()
@@ -69,13 +71,22 @@ init_ui = () ->
 $(document).ready () ->
   init_ui()
 
-SECONDS_TILL_CLEANUP = 30
+# timers, in seconds
+QUERY_T   = 5
+CLEANUP_T = 30
 
-# save a reference to this callback on the global namespace here
-# since we'll have exited the block when it's invoked, later.
+# keep the query header up to date so that as other users change it, 
+# our page remains current
+window.refresh_query = () ->
+  window.update_query()
+  setTimeout("window.refresh_query()", QUERY_T * 1000)
+window.setTimeout(window.refresh_query, QUERY_T * 1000, true)
+
+# prune tweets when we've displayed "too many" of them so we don't hog 
+# too many browser resources for users who leave the app open for weeks
 window.clean_up_DOM = () ->
   t = $("#tweets")
   t.children().slice( parseInt( t.children().size() / 2), (t.children().size())).replaceWith( "" )
-  setTimeout("window.clean_up_DOM()", SECONDS_TILL_CLEANUP * 1000)
+  setTimeout("window.clean_up_DOM()", CLEANUP_T * 1000)
+window.setTimeout(window.clean_up_DOM, CLEANUP_T * 1000, true)
 
-window.setTimeout(window.clean_up_DOM, SECONDS_TILL_CLEANUP * 1000, true)
