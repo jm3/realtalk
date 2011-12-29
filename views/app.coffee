@@ -2,7 +2,8 @@
 es = new EventSource "/stream"
 
 # global state
-window.paused = false
+window.paused       = false
+window.real_tweets  = false
 
 # inject tweets into the page as we receive them
 es.onmessage = (e) ->
@@ -10,6 +11,9 @@ es.onmessage = (e) ->
 
   # tweet
   t = jQuery.parseJSON e.data
+
+  # filter RTs and @messages if requested
+  return if window.real_tweets and (t.text.indexOf( "@") < 2 or t.text.indexOf( "RT") != -1)
 
   # buffer tweets in form for possible CSV save-out later
   $("#buffer").text( t.screen_name + ',"' + t.text.replace( /"/g, '""') + "\"\n" + $("#buffer").text() )
@@ -29,6 +33,12 @@ es.onmessage = (e) ->
 
 # update search query on the fly
 init_ui = () ->
+  # link real tweets UI checkbox to global state
+  $("#real_tweets_btn").change () ->
+    window.real_tweets = this.checked
+    console.log window.real_tweets
+
+  # link the button to the data buffer
   csv_downloader = () ->
     $("#data_buffer").submit()
   $("#csv_btn").click csv_downloader

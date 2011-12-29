@@ -117,6 +117,10 @@
             %a.btn.large#pause_btn Pause
             %a.btn.large#csv_btn Download CSV
 
+            %label
+              %input#real_tweets_btn{:type => "checkbox", :name => "real_tweets_btn"}
+              skip RTs / replies
+
           %form#data_buffer{:action => "/tweets.csv", :method => "post", :name => "data_buffer", :style => "display: none;", :target => "CSV"}
             %textarea#buffer{:rows => 60, :cols => 140, :name => "buffer", :style => "width: 900px;"}
 
