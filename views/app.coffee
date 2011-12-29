@@ -5,6 +5,9 @@ es = new EventSource "/stream"
 window.paused       = false
 window.real_tweets  = false
 
+rt = (t) ->
+  alert "checking if #{t} is an RT"
+
 # inject tweets into the page as we receive them
 es.onmessage = (e) ->
   return if window.paused
@@ -13,9 +16,20 @@ es.onmessage = (e) ->
   t = jQuery.parseJSON e.data
 
   # filter RTs and @messages if requested
-  # console.log "skipping @message ——— #{t.text}" if window.real_tweets and t.in_reply_to_status_id
-  # console.log "skipping RT ——— #{t.text}" if window.real_tweets and t.text.indexOf( "RT") != -1
-  return if window.real_tweets and (t.in_reply_to_status_id or t.text.indexOf( "RT") != -1)
+  if window.real_tweets
+    #console.group "tweet"
+    # if t.text.indexOf( "RT") != -1
+    #   console.log "skipping RT ——— #{t.text}" 
+    # if t.in_reply_to_status_id? or (t.text.indexOf( "@" ) >= 0 and t.text.indexOf( "@" ) <= 2)
+    #   console.log "SKIPPING AT MESSAGE"
+    #   if t.in_reply_to_status_id?
+    #     console.log "t.in_reply_to_status_id THINKS it has a value"
+    #   console.log "t.in_reply_to_status_id was #{t.in_reply_to_status_id}"
+    #   console.log "@ position was #{t.text.indexOf( '@' )}"
+    #   console.log "skipping reply: #{t.text}" 
+    # console.groupEnd()
+    if t.in_reply_to_status_id? or (t.text.indexOf("2") > 0 and t.text.indexOf("@") <= 2) or t.text.indexOf("RT") != -1
+      return
 
   # buffer tweets in form for possible CSV save-out later
   $("#buffer").text( t.screen_name + ',"' + t.text.replace( /"/g, '""') + "\"\n" + $("#buffer").text() )
