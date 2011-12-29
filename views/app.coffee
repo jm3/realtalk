@@ -11,7 +11,8 @@ es.onmessage = (e) ->
   # tweet
   t = jQuery.parseJSON e.data
 
-  $("#buffer").text( "#{t.screen_name}, #{t.text}\n#{ $("#buffer").text() }" )
+  # buffer tweets in form for possible CSV save-out later
+  $("#buffer").text( "#{t.screen_name}, #{t.text.replace( /,/g, '\,') }\n#{ $("#buffer").text() }" )
 
   # pretty-print the HTML to make it somewhat legible
   $("#tweets").prepend "
