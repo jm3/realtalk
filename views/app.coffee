@@ -13,9 +13,9 @@ es.onmessage = (e) ->
   t = jQuery.parseJSON e.data
 
   # filter RTs and @messages if requested
-  console.log "skipping @message ——— #{t.text}" if window.real_tweets and t.in_reply_to_status_id < 2
+  console.log "skipping @message ——— #{t.text}" if window.real_tweets and t.in_reply_to_status_id
   console.log "skipping RT ——— #{t.text}" if window.real_tweets and t.text.indexOf( "RT") != -1
-  return if window.real_tweets and (t.in_reply_to_status_id < 2 or t.text.indexOf( "RT") != -1)
+  return if window.real_tweets and (t.in_reply_to_status_id or t.text.indexOf( "RT") != -1)
 
   # buffer tweets in form for possible CSV save-out later
   $("#buffer").text( t.screen_name + ',"' + t.text.replace( /"/g, '""') + "\"\n" + $("#buffer").text() )
