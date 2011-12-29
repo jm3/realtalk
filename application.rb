@@ -22,6 +22,7 @@ module Stream
         add("/tracker").to(ConfigAction)
         add("/query/current").to(QueryCurrentAction)
         add("/users/count").to(UsersCountAction)
+        add("/tweets.csv").to(CSVDumperAction)
       end
     end
 
@@ -80,6 +81,27 @@ end
 class UsersCountAction < Cramp::Action
   def start
     render "{\"users_count\": \"#{ Ohm.redis.get( "cfg:users:count" ) }\" }"
+    finish
+  end
+end
+
+class CSVDumperAction < Cramp::Action
+  before_start :posts_only
+
+  def posts_only
+    if request.env["REQUEST_METHOD"] != "POST"
+      halt 500, {'Content-Type' => 'text/plain'}, "POSTS only, please"
+    else
+      yield
+    end
+  end
+
+  def respond_with
+    [200, {'Content-Type' => 'text/CSV'}]
+  end
+
+  def start
+    render request.POST.values.first.gsub( /\r\n/m, "\n" )
     finish
   end
 end

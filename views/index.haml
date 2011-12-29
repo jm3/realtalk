@@ -117,8 +117,8 @@
             %a.btn.large#pause_btn Pause
             %a.btn.large#csv_btn Download CSV
 
-          %form#data_storage{:action => "#", :name => "data_storage", :style => "display: none;"}
-            %textarea#buffer{:rows => 6, :cols => 140, :name => "buffer"}
+          %form#data_buffer{:action => "/tweets.csv", :method => "post", :name => "data_buffer", :style => "display: none;", :target => "CSV"}
+            %textarea#buffer{:rows => 60, :cols => 140, :name => "buffer", :style => "width: 900px;"}
 
           #tweets
 

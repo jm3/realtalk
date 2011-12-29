@@ -12,7 +12,7 @@ es.onmessage = (e) ->
   t = jQuery.parseJSON e.data
 
   # buffer tweets in form for possible CSV save-out later
-  $("#buffer").text( "#{t.screen_name}, #{t.text.replace( /,/g, '\,') }\n#{ $("#buffer").text() }" )
+  $("#buffer").text( t.screen_name + ',"' + t.text.replace( /"/g, '""') + "\"\n" + $("#buffer").text() )
 
   # pretty-print the HTML to make it somewhat legible
   $("#tweets").prepend "
@@ -29,6 +29,9 @@ es.onmessage = (e) ->
 
 # update search query on the fly
 init_ui = () ->
+  csv_downloader = () ->
+    $("#data_buffer").submit()
+  $("#csv_btn").click csv_downloader
 
   # show the user what query the current stream is tracking
   # save global ref so we can call it even after we're outta scope
