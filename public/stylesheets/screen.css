@@ -40,3 +40,63 @@
 .name {
   font-weight: bold;
 }
+
+/* blueprint shite */
+body {
+  padding-top: 60px;
+}
+
+/*------------------------------------*
+ *  IPHONE                            *
+ *------------------------------------*/
+
+@media screen and (max-device-width: 480px){
+
+/*--- iPhone only CSS here ---*/
+  body {
+    padding: 5px;
+  }
+  .container-fluid {
+    padding: 0;
+    min-width: inherit;
+  }
+  .container-fluid > .content {
+    margin: 0;
+  }
+
+  .hero-unit {
+    padding: 0;
+  }
+
+  .hero-unit h1,
+  .hero-unit h2 {
+    font-size: 18px;
+    letter-spacing: 0px;
+  }
+
+  div.sidebar, div.topbar {
+    display: none;
+  }
+
+  .row > [class*="span"] {
+    display: none;
+    /*
+     * alternate idea:
+     * display: block;
+     * float: none;
+     */
+  }
+
+  .tweet .text {
+    font-size: 18px;
+    line-height: 24px;
+    padding: 6px;
+  }
+
+  input#query {
+    display: block;
+    padding: 7px;
+    margin: 10px;
+    width: 90%;
+  }
+}
