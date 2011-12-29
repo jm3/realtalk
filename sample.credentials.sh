@@ -1,3 +1,7 @@
+# rename this file to credentials.sh,
+# fill in the a/B/C/D values, and run:
+# source credentials.sh
+
 # twitter oauth creds:
 export OAUTH_KEY=AAA
 export OAUTH_SECRET=BBB

@@ -21,9 +21,8 @@
     # install gems
     bundle
 
-    # fill in credentials file, then...
-    # store credentials for the app to read
-    bundle exec sh credentials.sh
+    # rename sample.credentials.sh to credentials.sh and fill it in
+    source credentials.sh
 
     # start the process group
     bundle exec foreman start
