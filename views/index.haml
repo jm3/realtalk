@@ -3,7 +3,7 @@
   %head
     %meta{:charset => "utf-8"}
     %title
-      - if :user_agent.match( /iphone/ )
+      - if :user_agent.match( /iPhone/ )
         = "#Realtalk"
       - else
         = "#Realtalk - realtime tweet streaming by jm3. Uses Redis, Cramp, Ruby, HTML5, and a whole host of other jonk"
@@ -92,7 +92,7 @@
             = "#Realtalk"
             %span.pausable{:style => "display: none;"} is Paused
 
-          %h3
+          %h3.author
             by John Manoogian III /
             = succeed "." do
               %a{:href => "//www.jm3.net/"} jm3
@@ -107,7 +107,7 @@
             directly to your browser using HTML5 Server-Sent Events,
             because who really has time to wait for&nbsp;tweets?
 
-          %h3
+          %h3.status
             Currently streaming tweets about &ldquo;<span class="query">happy</span>&rdquo; to <span class="users_count">users</span>:
 
           %form#config{:action => "#", :name => "config"}

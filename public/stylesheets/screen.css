@@ -68,35 +68,63 @@ body {
     padding: 0;
   }
 
-  .hero-unit h1,
-  .hero-unit h2 {
-    font-size: 18px;
+  .hero-unit h1 {
+    font-size: 22px;
+    letter-spacing: 0;
+  }
+  
+  .hero-unit br {
+    display: none;
+  }
+
+  h3 {
+    font-size: 15px;
     letter-spacing: 0px;
+    line-height: 16px;
   }
 
-  div.sidebar, div.topbar {
+  h3.status {
+    font-size: 11px;
+  }
+
+  .btn.large {
+    padding: 0 3px 0 3px;
+    margin-left: 10px;
+  }
+
+  .hero-unit h2,
+  .hero-unit p,
+  h3.author,
+  #csv_btn,
+  div.sidebar,
+  div.topbar,
+  .row > [class*="span"],
+  footer p {
     display: none;
   }
 
-  .row > [class*="span"] {
-    display: none;
-    /*
-     * alternate idea:
-     * display: block;
-     * float: none;
-     */
+  form {
+    margin-botton: 10px;
+  }
+
+  .tweet {
+    padding: 5px;
+  }
+
+  .tweet .icon {
+    margin: 5px;
   }
 
   .tweet .text {
-    font-size: 18px;
-    line-height: 24px;
-    padding: 6px;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 4px;
   }
 
   input#query {
     display: block;
-    padding: 7px;
-    margin: 10px;
+    padding: 5px;
+    margin: 5px;
     width: 90%;
   }
 }
