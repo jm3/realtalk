@@ -17,12 +17,12 @@ module Stream
 
     def self.routes
       @_routes ||= HttpRouter.new do
-        add("/").to(HomeAction)
-        add("/stream").to(StreamAction)
-        add("/tracker").to(ConfigAction)
-        add("/query/current").to(QueryCurrentAction)
-        add("/users/count").to(UsersCountAction)
-        add("/tweets.csv").to(CSVDumperAction)
+        add("/"              ) .to(HomeAction         )
+        add("/stream"        ) .to(StreamAction       )
+        add("/tracker"       ) .to(ConfigAction       )
+        add("/query/current" ) .to(QueryCurrentAction )
+        add("/users/count"   ) .to(UsersCountAction   )
+        add("/tweets.csv"    ) .to(CSVDumperAction    )
       end
     end
 
@@ -44,10 +44,10 @@ end
 
 class StreamAction < Cramp::Action
   self.transport = :sse
-  use_fiber_pool :size => 1024 
-  periodic_timer :stream_new_event, :every => 1
-  on_start :user_connected
-  on_finish :user_left
+  use_fiber_pool :size => 1024
+  periodic_timer :stream_new_event, : every => 1
+  on_start       :user_connected
+  on_finish      :user_left
   @@users = Set.new
 
   def user_connected
