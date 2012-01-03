@@ -50,7 +50,7 @@ body {
  *  IPHONE                            *
  *------------------------------------*/
 
-@media screen and (max-device-width: 480px){
+@media screen and (max-device-width: 480px) {
 
 /*--- iPhone only CSS here ---*/
 
@@ -131,3 +131,75 @@ body {
     width   : 90%;
   }
 }
+
+/*------------------------------------*
+ *  IPAD                              *
+ *------------------------------------*/
+
+@media screen and (max-device-width: 1024px) {
+
+/*--- iPad only CSS here ---*/
+
+  body {
+    padding: 0px;
+  }
+
+  .container-fluid {
+    min-width : inherit;
+    padding   : 0;
+  }
+
+  .container-fluid > .content {
+    margin: 0;
+  }
+
+  .hero-unit {
+    padding: 0;
+  }
+
+  .hero-unit h1 {
+    font-size      : 22px;
+    letter-spacing : 0;
+    width: 300px;
+    float: left;
+  }
+
+  .btn.large {
+    margin-left : 10px;
+    padding     : 0 3px 0 3px;
+  }
+
+  .tweet {
+    margin: 0;
+    padding: 0;
+  }
+
+  .tweet .icon {
+    margin: 8px;
+  }
+
+  .tweet .text {
+    padding: 8px;
+  }
+
+  input#query {
+    margin: 0 0 0 8px;
+  }
+  
+  h3.status {
+    color: #777;
+  }
+
+  .hero-unit br,
+  .hero-unit h2,
+  .hero-unit p,
+  h3.author,
+  #csv_btn,
+  div.sidebar,
+  div.topbar,
+  .row > [class*="span"],
+  footer p {
+    display: none;
+  }
+}
+
