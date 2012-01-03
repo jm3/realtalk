@@ -45,7 +45,7 @@ end
 class StreamAction < Cramp::Action
   self.transport = :sse
   use_fiber_pool :size => 1024
-  periodic_timer :stream_new_event, : every => 1
+  periodic_timer :stream_new_event, :every => 1
   on_start       :user_connected
   on_finish      :user_left
   @@users = Set.new
