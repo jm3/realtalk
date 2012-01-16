@@ -67,7 +67,7 @@ loop do
 
     puts status.text
     Ohm.redis.sadd "tweet:#{kind}:#{query}", condensed_metadata.to_json
-    puts "adding tweet"
+    puts "tweet:#{kind}:#{query} - #{status.user.screen_name}"
   end
 
   kind  = Ohm.redis.get("cfg:track:kind")  || DEFAULT_KIND
