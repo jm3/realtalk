@@ -91,7 +91,7 @@ EM.run do
       :user_mentions          => status["entities"]["user_mentions"],
     }
     Ohm.redis.sadd "tweet:#{kind}:#{query}", condensed_metadata.to_json
-    puts "adding tweet"
+    puts "tweet:#{kind}:#{query} - #{status.user.screen_name}"
   end
 
   kind  = Ohm.redis.get("cfg:track:kind")  || DEFAULT_KIND
