@@ -65,6 +65,7 @@ loop do
       :user_mentions          => status.entities.user_mentions,
     }
 
+    puts status.text
     Ohm.redis.sadd "tweet:#{kind}:#{query}", condensed_metadata.to_json
   end
 
