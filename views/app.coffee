@@ -38,7 +38,7 @@ es.onmessage = (e) ->
   $("#tweets").prepend "
     <div class='tweet' data-screen-name='#{t.screen_name}'>
       <a target='tweet' href='//twitter.com/#!/#{t.screen_name}'>
-        <div class='icon' style='background-image:url(//img.tweetimag.es/i/#{t.screen_name}_n);' />
+        <div class='icon' style='background-image:url(//api.twitter.com/1/users/profile_image?screen_name=#{t.screen_name}&size=normal);' />
       </a>
       <span class='text'>
         #{t.text} &mdash; <span class='name'>#{t.name}</span>
