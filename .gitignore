@@ -2,6 +2,8 @@
 *.swo
 *.swp
 *~
+.RData
+.Rhistory
 .gems
 credentials.sh
 public/javascripts
