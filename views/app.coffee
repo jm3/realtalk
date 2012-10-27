@@ -14,6 +14,7 @@ es.onmessage = (e) ->
 
   # tweet
   t = jQuery.parseJSON e.data
+  console.log( t.text )
 
   # filter RTs and @messages if requested
   if window.real_tweets

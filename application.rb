@@ -64,6 +64,7 @@ class StreamAction < Cramp::Action
   end
 
   def stream_new_event
+    puts "STREAMING NEW TWEET TO THE BROWSER via SSE"
     data = Ohm.redis.spop( "tweet:#{Ohm.redis.get("cfg:track:kind")}:#{Ohm.redis.get("cfg:track:query")}" )
     if data
       @@users.each { |u| u.render data }
