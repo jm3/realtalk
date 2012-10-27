@@ -2,7 +2,8 @@
 *.swo
 *.swp
 *~
-credentials.sh
 .gems
+credentials.sh
 public/javascripts
 tmp/
+vendor
