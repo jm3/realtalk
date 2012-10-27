@@ -67,23 +67,7 @@ loop do
 
     puts status.text
     Ohm.redis.sadd "tweet:#{kind}:#{query}", condensed_metadata.to_json
-    puts "tweet:#{kind}:#{query} - #{status.user.screen_name}"
-    screen_name = status.user.screen_name
-
-    Ohm.redis.sadd( "tweets:hashtags", screen_name ) unless status.entities.hashtags.empty?
-    Ohm.redis.sadd( "tweets:links",    screen_name ) unless status.entities.urls.empty?
-    Ohm.redis.sadd( "tweets:mentions", screen_name ) unless status.entities.user_mention
-
-    status.text.split( / / ).each do |word|
-      next unless word.match( /^#?[A-Za-z]+$/ )
-      word.downcase!
-      Ohm.redis.sadd( "words", word )
-      count = Ohm.redis.incr( word )
-      if count == 1
-        puts "NEW WORD: #{word}"
-      end
-    end
-
+    # puts "tweet:#{kind}:#{query} - #{status.user.screen_name}"
   end
 
   kind  = Ohm.redis.get("cfg:track:kind")  || DEFAULT_KIND
