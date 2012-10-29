@@ -1,8 +1,8 @@
 # Realtalk
 
-## Realtime tweet streaming via Server-Sent Events, Cramp, and Redis.
+by @jm3
 
-![Greetings Programs](http://f.cl.ly/items/302g1C2d3K0c2x3c2y1V/Screen%20Shot%202011-12-15%20at%2011.18.26%20AM.png)
+## Realtime tweet streaming to the browser with Server-Sent Events & Redis.
 
 ### Supporting cast:
 
