@@ -1,6 +1,4 @@
-# Realtalk
-
-by [@jm3](//twitter.com/jm3)
+# Realtalk by [@jm3](//twitter.com/jm3)
 
 ## Realtime tweet streaming to the browser with Server-Sent Events & Redis.
 
@@ -33,5 +31,5 @@ by [@jm3](//twitter.com/jm3)
 * Process management by [Foreman](http://ddollar.github.com/foreman/)
 * HTML element grid by [Bootstrap](//twitter.github.com/bootstrap/)
 * Templating by [Haml](//haml-lang.com/)
-* Proudly hosted by [Heroku](//heroku.com/)
+* Free cloud hosting by [Heroku](//heroku.com/)
 
