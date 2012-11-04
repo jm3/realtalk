@@ -5,7 +5,9 @@
 .RData
 .Rhistory
 .gems
+.rbx
 credentials.sh
+notes
 public/javascripts
 tmp/
 vendor
