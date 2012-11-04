@@ -13,7 +13,6 @@ gem "tweetstream" # for streaming api
 gem "yajl-ruby"   # ↳ tweetstream
 
 group :development do
-  gem "heroku"    # one-button deploys
   gem "rake"      # testing travis-ci
 end
 
