@@ -2,6 +2,8 @@
 
 [![Build Status](https://secure.travis-ci.org/jm3/realtalk.png)](http://travis-ci.org/jm3/realtalk)
 
+[![Dependency Status](https://gemnasium.com/jm3/realtalk.png)](https://gemnasium.com/jm3/realtalk)
+
 ## Realtime tweet streaming to the browser with Server-Sent Events & Redis.
 
 ### Requirements:
