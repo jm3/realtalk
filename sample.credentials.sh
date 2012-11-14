@@ -1,5 +1,5 @@
 # rename this file to credentials.sh,
-# fill in the a/B/C/D values, and run:
+# replace the dummy values, and run:
 # source credentials.sh
 
 # twitter oauth creds:
@@ -8,19 +8,22 @@ export OAUTH_SECRET=BBB
 export OAUTH_ACCESS_TOKEN=CCC
 export OAUTH_TOKEN_SECRET=DDD
 
+# app.net oauth creds (experimental):
+export APPNET_CLIENT_ID=EEE
+export APPNET_CLIENT_SECRET=FFF
+
 # this will be auto-created for you after running "heroku create"
 # and adding the Redis-to-Go Heroku AddOn to your project:
-export REDIS_URL="redis://redistogo:0xDEADBEEF@bongs.redistogo.com:9355/"
-
-# be sneaky
-export RACK_SESSION_SECRET="foo-HUSH"
+# uncomment next line if using redistogo:
+# export REDIS_URL="redis://redistogo:REPLACE_WITH_PROD_REDIS_URL/"
 
 # mirror the vars in Heroku's remote env
-heroku config:add \
-  REDIS_URL=$REDIS_URL \
-  RACK_SESSION_SECRET=$RACK_SESSION_SECRET \
-  OAUTH_KEY=$OAUTH_KEY \
-  OAUTH_SECRET=$OAUTH_SECRET \
-  OAUTH_ACCESS_TOKEN=$OAUTH_ACCESS_TOKEN \
-  OAUTH_TOKEN_SECRET=$OAUTH_TOKEN_SECRET
+# uncomment this block if using heroku
+# heroku config:add \
+#   REDIS_URL=$REDIS_URL \
+#   RACK_SESSION_SECRET=$RACK_SESSION_SECRET \
+#   OAUTH_KEY=$OAUTH_KEY \
+#   OAUTH_SECRET=$OAUTH_SECRET \
+#   OAUTH_ACCESS_TOKEN=$OAUTH_ACCESS_TOKEN \
+#   OAUTH_TOKEN_SECRET=$OAUTH_TOKEN_SECRET
 
