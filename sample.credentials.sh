@@ -13,6 +13,9 @@ export OAUTH_TOKEN_SECRET=DDD
 # uncomment next line if using redistogo:
 # export REDIS_URL="redis://redistogo:REPLACE_WITH_PROD_REDIS_URL/"
 
+# be sneaky
+export RACK_SESSION_SECRET="whatever-something-random-here"
+
 # mirror the vars in Heroku's remote env
 # uncomment this block if using heroku
 # heroku config:add \
