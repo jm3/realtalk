@@ -12,6 +12,9 @@ export OAUTH_TOKEN_SECRET=DDD
 export APPNET_CLIENT_ID=EEE
 export APPNET_CLIENT_SECRET=FFF
 
+# be sneaky
+export RACK_SESSION_SECRET="whatever-something-random-here"
+
 # this will be auto-created for you after running "heroku create"
 # and adding the Redis-to-Go Heroku AddOn to your project:
 # uncomment next line if using redistogo:
