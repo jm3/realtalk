@@ -1,5 +1,7 @@
 source :rubygems
 
+gem "rack", "~>1.5.4"
+
 gem "async-rack"  # async-proof rack middleware (github.com/rkh/async-rack.git)
 gem "barista"     # coffeescript support
 gem "cramp"       # parent web framework
@@ -10,7 +12,7 @@ gem "http_router" # Rack based routing
 gem "ohm"         # redis
 gem "thin"        # Async webserver for running a cramp application
 gem "tilt"        # for passing locals to haml template
-gem "yajl-ruby"   # ↳ tweetstream
+gem "yajl-ruby", "~>1.3.1"  # for tweetstream
 
 group :development do
   gem "rake"      # testing travis-ci
